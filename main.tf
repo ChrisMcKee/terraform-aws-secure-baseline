@@ -52,7 +52,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.cloudtrail_s3_key_prefix}/AWSLogs/${var.aws_account_id}/CloudTrail/*",
+        "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.cloudtrail_s3_key_prefix}/AWSLogs/${var.aws_account_id}/*",
         "Condition": {
             "StringEquals": {
                 "s3:x-amz-acl": "bucket-owner-full-control"
