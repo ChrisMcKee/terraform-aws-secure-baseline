@@ -92,8 +92,20 @@ This module is composed of several submodules and each of which can be used inde
 | alarm_namespace | The namespace in which all alarms are set up. | string | `CISBenchmark` | no |
 | alarm_sns_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `CISAlarm` | no |
 | allow_users_to_change_password | Whether to allow users to change their own password. | string | `true` | no |
-| audit_log_bucket_name | The name of the S3 bucket to store various audit logs. | string | - | yes |
-| audit_log_lifecycle_glacier_transition_days | The number of days after log creation when the log file is archived into Glacier. | string | `90` | no |
+| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | - | yes |
+| audit\_log\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | `` | no |
+| audit\_log\_destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | `` | no |
+| audit\_log\_enable\_expiration | Set to true to enable object expiration | string | `false` | no |
+| audit\_log\_expiration | Specifies a period in the object's expire (days) | string | `365` | no |
+| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier (access logs). | string | `90` | no |
+| audit\_log\_noncurrent\_version\_expiration | Specifies when noncurrent object versions expire (days) | string | `365` | no |
+| audit\_log\_noncurrent\_version\_transition | Specifies when noncurrent object versions transitions (days) | string | `90` | no |
+| audit\_log\_noncurrent\_version\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the noncurrent versions object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `GLACIER` | no |
+| audit\_log\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `/` | no |
+| audit\_log\_replication\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `/` | no |
+| audit\_log\_replication\_status | The status of the rule. Either Enabled or Disabled. The rule is ignored if status is not Enabled | string | `Disabled` | no |
+| audit\_log\_transition | Specifies a period in the object's transitions (days) | string | `90` | no |
+| audit\_log\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `GLACIER` | no |
 | aws_account_id | The AWS Account ID number of the account. | string | - | yes |
 | cloudtrail_cloudwatch_logs_group_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `cloudtrail-multi-region` | no |
 | cloudtrail_iam_role_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `CloudTrail-CloudWatch-Delivery-Role` | no |
