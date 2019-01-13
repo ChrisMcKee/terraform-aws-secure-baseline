@@ -11,8 +11,68 @@ variable "audit_log_bucket_name" {
 }
 
 variable "audit_log_lifecycle_glacier_transition_days" {
-  description = "The number of days after log creation when the log file is archived into Glacier."
+  description = "The number of days after log creation when the log file is archived into Glacier (access logs)."
   default     = 90
+}
+
+variable "audit_log_prefix" {
+  default     = "/"
+  description = "Object keyname prefix identifying one or more objects to which the rule applies"
+}
+
+variable "audit_log_enable_expiration" {
+  description = "Set to true to enable object expiration"
+  default     = false
+}
+
+variable "audit_log_expiration" {
+  description = "Specifies a period in the object's expire (days)"
+  default     = 365
+}
+
+variable "audit_log_transition" {
+  description = "Specifies a period in the object's transitions (days)"
+  default     = 90
+}
+
+variable "audit_log_noncurrent_version_expiration" {
+  description = "Specifies when noncurrent object versions expire (days)"
+  default     = 365
+}
+
+variable "audit_log_noncurrent_version_transition" {
+  description = "Specifies when noncurrent object versions transitions (days)"
+  default     = 90
+}
+
+variable "audit_log_transition_storage_class" {
+  default     = "GLACIER"
+  description = "Specifies the Amazon S3 storage class to which you want the object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER"
+}
+
+variable "audit_log_noncurrent_version_transition_storage_class" {
+  default     = "GLACIER"
+  description = "Specifies the Amazon S3 storage class to which you want the noncurrent versions object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER"
+}
+
+variable "audit_log_replication_status" {
+  default     = "Disabled"
+  description = "The status of the rule. Either Enabled or Disabled. The rule is ignored if status is not Enabled"
+}
+
+variable "audit_log_replication_prefix" {
+  description = "Object keyname prefix identifying one or more objects to which the rule applies"
+  default     = "/"
+}
+
+variable "audit_log_destination_bucket_arn" {
+  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule"
+  default     = ""
+}
+
+variable "audit_log_destination_replica_kms_key_id" {
+  description = "Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria"
+  default     = ""
 }
 
 variable "region" {

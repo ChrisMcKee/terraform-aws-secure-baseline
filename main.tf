@@ -9,9 +9,23 @@
 module "audit_log_bucket" {
   source = "./modules/secure-bucket"
 
-  bucket_name                       = "${var.audit_log_bucket_name}"
-  log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
-  lifecycle_glacier_transition_days = "${var.audit_log_lifecycle_glacier_transition_days}"
+  region                                      = "${var.region}"
+  bucket_name                                 = "${var.audit_log_bucket_name}"
+  log_bucket_name                             = "${var.audit_log_bucket_name}-access-logs"
+  lifecycle_glacier_transition_days           = "${var.audit_log_lifecycle_glacier_transition_days}"
+  prefix                                      = "${var.audit_log_prefix}"
+  enable_expiration                           = "${var.audit_log_enable_expiration}"
+  expiration                                  = "${var.audit_log_expiration}"
+  transition                                  = "${var.audit_log_transition}"
+  noncurrent_version_expiration               = "${var.audit_log_noncurrent_version_expiration}"
+  noncurrent_version_transition               = "${var.audit_log_noncurrent_version_transition}"
+  transition_storage_class                    = "${var.audit_log_transition_storage_class}"
+  noncurrent_version_transition_storage_class = "${var.audit_log_noncurrent_version_transition_storage_class}"
+  replication_status                          = "${var.audit_log_replication_status}"
+  replication_prefix                          = "${var.audit_log_replication_prefix}"
+  source_kms_key_id                           = "${module.cloudtrail_baseline.kms_key_id}"
+  destination_bucket_arn                      = "${var.audit_log_destination_bucket_arn}"
+  destination_replica_kms_key_id              = "${var.audit_log_destination_replica_kms_key_id}"
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
