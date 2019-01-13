@@ -93,8 +93,8 @@ This module is composed of several submodules and each of which can be used inde
 | alarm_sns_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `CISAlarm` | no |
 | allow_users_to_change_password | Whether to allow users to change their own password. | string | `true` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | - | yes |
-| audit\_log\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | `` | no |
-| audit\_log\_destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | `` | no |
+| audit\_log\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | - | yes |
+| audit\_log\_destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | - | yes |
 | audit\_log\_enable\_expiration | Set to true to enable object expiration | string | `false` | no |
 | audit\_log\_expiration | Specifies a period in the object's expire (days) | string | `365` | no |
 | audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier (access logs). | string | `90` | no |

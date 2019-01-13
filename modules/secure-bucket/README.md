@@ -7,11 +7,11 @@ Creates a S3 bucket with access logging enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | bucket\_name | - | string | - | yes |
+| destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | - | yes |
+| destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | - | yes |
 | log\_bucket\_name | - | string | - | yes |
 | region | Region of the bucket data | string | - | yes |
 | source\_kms\_key\_id | AWS KMS key IDs used to encrypt source objects | string | - | yes |
-| destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | `` | no |
-| destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | `` | no |
 | enable\_expiration | Set to true to enable object expiration | string | `false` | no |
 | expiration | Specifies a period in the object's expire (days) | string | `365` | no |
 | lifecycle\_glacier\_transition\_days | The number of days after object creation when the object is archived into Glacier (access logs). | string | `90` | no |

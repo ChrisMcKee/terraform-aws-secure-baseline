@@ -62,7 +62,6 @@ variable "replication_prefix" {
 
 variable "destination_bucket_arn" {
   description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule"
-  default     = ""
 }
 
 variable "source_kms_key_id" {
@@ -71,5 +70,4 @@ variable "source_kms_key_id" {
 
 variable "destination_replica_kms_key_id" {
   description = "Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria"
-  default     = ""
 }
