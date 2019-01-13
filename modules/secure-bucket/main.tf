@@ -37,16 +37,52 @@ resource "aws_s3_bucket" "content" {
     id      = "auto-archive"
     enabled = true
 
-    prefix = "/"
+    prefix = "${var.prefix}"
 
     transition {
-      days          = "${var.lifecycle_glacier_transition_days}"
-      storage_class = "GLACIER"
+      days          = "${var.transition}"
+      storage_class = "${var.transition_storage_class}"
     }
 
     noncurrent_version_transition {
-      days          = "${var.lifecycle_glacier_transition_days}"
-      storage_class = "GLACIER"
+      days          = "${var.noncurrent_version_transition}"
+      storage_class = "${var.noncurrent_version_transition_storage_class}"
+    }
+  }
+
+  lifecycle_rule {
+    id      = "auto-expire"
+    enabled = "${var.enable_expiration}"
+
+    prefix = "${var.prefix}"
+
+    expiration {
+      days = "${var.expiration}"
+    }
+
+    noncurrent_version_expiration {
+      days = "${var.noncurrent_version_expiration}"
+    }
+  }
+
+  replication_configuration {
+    role = "${aws_iam_role.replication.arn}"
+
+    rules {
+      id     = "replication"
+      prefix = "${var.replication_prefix}"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
     }
   }
 }
