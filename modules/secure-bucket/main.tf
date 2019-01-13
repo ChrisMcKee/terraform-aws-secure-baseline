@@ -1,3 +1,9 @@
+/** 
+ * # secure-bucket
+ *
+ * Creates a S3 bucket with access logging enabled.
+ */
+
 resource "aws_s3_bucket" "access_log" {
   bucket = "${var.log_bucket_name}"
 
@@ -80,9 +86,10 @@ resource "aws_s3_bucket" "content" {
       }
 
       destination {
-        bucket             = "${var.destination_bucket_arn}"
+        bucket        = "${var.destination_bucket_arn}"
         replica_kms_key_id = "${var.destination_replica_kms_key_id}"
       }
     }
   }
 }
+
