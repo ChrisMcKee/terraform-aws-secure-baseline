@@ -60,13 +60,13 @@ module "guardduty_baseline_eu-central-1" {
   }
 }
 
-module "guardduty_baseline_eu-north-1" {
-  source = "./modules/guardduty-baseline"
+# module "guardduty_baseline_eu-north-1" {
+#   source = "./modules/guardduty-baseline"
 
-  providers = {
-    aws = "aws.eu-north-1"
-  }
-}
+#   providers = {
+#     aws = "aws.eu-north-1"
+#   }
+# }
 
 module "guardduty_baseline_eu-west-1" {
   source = "./modules/guardduty-baseline"
