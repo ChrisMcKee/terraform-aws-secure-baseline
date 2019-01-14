@@ -23,7 +23,7 @@ module "audit_log_bucket" {
   noncurrent_version_transition_storage_class = "${var.audit_log_noncurrent_version_transition_storage_class}"
   replication_status                          = "${var.audit_log_replication_status}"
   replication_prefix                          = "${var.audit_log_replication_prefix}"
-  source_kms_key_id                           = "${module.cloudtrail_baseline.kms_key_id}"
+  source_kms_key_id                           = "${module.cloudtrail_baseline.kms_key_arn}"
   destination_bucket_arn                      = "${var.audit_log_destination_bucket_arn}"
   destination_replica_kms_key_id              = "${var.audit_log_destination_replica_kms_key_id}"
 }
