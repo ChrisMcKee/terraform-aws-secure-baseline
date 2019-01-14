@@ -171,6 +171,19 @@ module "config_baseline_eu-central-1" {
   }
 }
 
+module "config_baseline_eu-north-1" {
+  source             = "./modules/config-baseline"
+  iam_role_arn       = "${aws_iam_role.recorder.arn}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
+  s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
+  delivery_frequency = "${var.config_delivery_frequency}"
+  sns_topic_name     = "${var.config_sns_topic_name}"
+
+  providers = {
+    aws = "aws.eu-north-1"
+  }
+}
+
 module "config_baseline_eu-west-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"

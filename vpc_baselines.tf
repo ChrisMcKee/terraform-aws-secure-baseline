@@ -127,6 +127,15 @@ module "vpc_baseline_eu-central-1" {
   }
 }
 
+module "vpc_baseline_eu-north-1" {
+  source                     = "./modules/vpc-baseline"
+  vpc_flow_logs_group_arn    = "arn:aws:logs:eu-north-1:${var.aws_account_id}:log-group:${var.vpc_log_group_name}:*"
+  vpc_flow_logs_iam_role_arn = "${aws_iam_role.vpc_flow_logs_publisher.arn}"
+
+  providers = {
+    aws = "aws.eu-north-1"
+  }
+}
 module "vpc_baseline_eu-west-1" {
   source                     = "./modules/vpc-baseline"
   vpc_flow_logs_group_arn    = "arn:aws:logs:eu-west-1:${var.aws_account_id}:log-group:${var.vpc_log_group_name}:*"
