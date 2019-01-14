@@ -145,7 +145,6 @@ output "guardduty_detector_id" {
       "ap-southeast-2", "${module.guardduty_baseline_ap-southeast-2.guardduty_detector_id}",
       "ca-central-1", "${module.guardduty_baseline_ca-central-1.guardduty_detector_id}",
       "eu-central-1", "${module.guardduty_baseline_eu-central-1.guardduty_detector_id}",
-      # "eu-north-1", "${module.guardduty_baseline_eu-north-1.guardduty_detector_id}",
       "eu-west-1", "${module.guardduty_baseline_eu-west-1.guardduty_detector_id}",
       "eu-west-2", "${module.guardduty_baseline_eu-west-2.guardduty_detector_id}",
       "sa-east-1", "${module.guardduty_baseline_sa-east-1.guardduty_detector_id}",
