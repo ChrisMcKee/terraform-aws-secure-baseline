@@ -1,10 +1,3 @@
-/**
- * # config-baseline
- *
- * Enable AWS Config in all regions to automatically take configuration snapshots.
- *
- */
-
 # --------------------------------------------------------------------------------------------------
 # Set up AWS Config recorder and let it publish results and send notifications.
 # --------------------------------------------------------------------------------------------------
