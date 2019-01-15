@@ -39,7 +39,7 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized_api_calls" {
 
 resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
   name           = "NoMFAConsoleSignin"
-  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") }"
+  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") && ($.additionalEventData.SamlProviderArn != \"*saml-provider/as1.fim.psu.edu\") }"
   log_group_name = "${var.cloudtrail_log_group_name}"
 
   metric_transformation {
