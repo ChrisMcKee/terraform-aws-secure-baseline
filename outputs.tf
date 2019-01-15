@@ -21,6 +21,11 @@ output "alarms_topic_arn" {
   value       = "${module.alarm_baseline.alarm_topic_arn}"
 }
 
+output "alarms_topic_name" {
+  description = "The name of the SNS Topic which will be notified when any alarm is performed."
+  value       = "${module.alarm_baseline.alarm_topic_name}"
+}
+
 # --------------------------------------------------------------------------------------------------
 # Outputs from cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------

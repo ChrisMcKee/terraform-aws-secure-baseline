@@ -145,6 +145,7 @@ This module is composed of several submodules and each of which can be used inde
 | Name | Description |
 |------|-------------|
 | alarms_topic_arn | The ARN of the SNS topic to which CloudWatch Alarms will be sent. |
+| alarms_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. |
 | audit_bucket_arn | The ARN of the S3 bucket used for storing audit logs. |
 | audit_bucket_id | The ID of the S3 bucket used for storing audit logs. |
 | cloudtrail_arn | The ARN of the trail for recording events in all regions. |
