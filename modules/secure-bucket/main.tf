@@ -43,7 +43,7 @@ resource "aws_s3_bucket" "content" {
     id      = "auto-archive"
     enabled = true
 
-    prefix = "${var.prefix}"
+    # prefix = "${var.prefix}"
 
     transition {
       days          = "${var.transition}"
