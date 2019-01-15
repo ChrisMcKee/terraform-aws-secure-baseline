@@ -75,6 +75,11 @@ variable "audit_log_destination_replica_kms_key_id" {
   default     = ""
 }
 
+variable "audit_log_destination_region" {
+  description = "Destination region of the bucket data"
+  default = "us-east-2"
+}
+
 variable "region" {
   description = "The AWS region in which global resources are set up."
 }

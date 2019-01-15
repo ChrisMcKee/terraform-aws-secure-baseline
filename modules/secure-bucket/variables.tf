@@ -71,3 +71,8 @@ variable "source_kms_key_id" {
 variable "destination_replica_kms_key_id" {
   description = "Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria"
 }
+
+variable "destination_region" {
+  description = "Destination region of the bucket data"
+  default = "us-east-2"
+}

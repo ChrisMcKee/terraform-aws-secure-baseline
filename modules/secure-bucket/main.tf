@@ -76,7 +76,7 @@ resource "aws_s3_bucket" "content" {
 
     rules {
       id     = "replication"
-      prefix = "${var.replication_prefix}"
+      # prefix = "${var.replication_prefix}"
       status = "${var.replication_status}"
 
       source_selection_criteria {
