@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "access_log" {
     id      = "auto-archive"
     enabled = true
 
-    prefix = "/"
+    # prefix = "/"
 
     transition {
       days          = "${var.lifecycle_glacier_transition_days}"
@@ -60,7 +60,7 @@ resource "aws_s3_bucket" "content" {
     id      = "auto-expire"
     enabled = "${var.enable_expiration}"
 
-    prefix = "${var.prefix}"
+    # prefix = "${var.prefix}"
 
     expiration {
       days = "${var.expiration}"
