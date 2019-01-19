@@ -6,11 +6,6 @@ variable "s3_bucket_name" {
   description = "The name of the S3 bucket which will store configuration snapshots."
 }
 
-variable "s3_key_prefix" {
-  description = "The prefix for the specified S3 bucket."
-  default     = ""
-}
-
 variable "sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   default     = "ConfigChanges"
