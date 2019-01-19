@@ -49,7 +49,6 @@ resource "aws_s3_bucket" "content" {
       days          = "${var.transition}"
       storage_class = "${var.transition_storage_class}"
     }
-
     noncurrent_version_transition {
       days          = "${var.noncurrent_version_transition}"
       storage_class = "${var.noncurrent_version_transition_storage_class}"
@@ -65,7 +64,6 @@ resource "aws_s3_bucket" "content" {
     expiration {
       days = "${var.expiration}"
     }
-
     noncurrent_version_expiration {
       days = "${var.noncurrent_version_expiration}"
     }
@@ -75,7 +73,8 @@ resource "aws_s3_bucket" "content" {
     role = "${aws_iam_role.replication.arn}"
 
     rules {
-      id     = "replication"
+      id = "replication"
+
       # prefix = "${var.replication_prefix}"
       status = "${var.replication_status}"
 
@@ -86,10 +85,9 @@ resource "aws_s3_bucket" "content" {
       }
 
       destination {
-        bucket        = "${var.destination_bucket_arn}"
+        bucket             = "${var.destination_bucket_arn}"
         replica_kms_key_id = "${var.destination_replica_kms_key_id}"
       }
     }
   }
 }
-

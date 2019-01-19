@@ -40,7 +40,7 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized_api_calls" {
   alarm_description         = "Monitoring unauthorized API calls will help reveal application errors and may reduce time to detect malicious activity."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
@@ -67,7 +67,7 @@ resource "aws_cloudwatch_metric_alarm" "no_mfa_console_signin" {
   alarm_description         = "Monitoring for single-factor console logins will increase visibility into accounts that are not protected by MFA."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "root_usage" {
@@ -94,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "root_usage" {
   alarm_description         = "Monitoring for root account logins will provide visibility into the use of a fully privileged account and an opportunity to reduce the use of it."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "iam_changes" {
@@ -121,7 +121,7 @@ resource "aws_cloudwatch_metric_alarm" "iam_changes" {
   alarm_description         = "Monitoring changes to IAM policies will help ensure authentication and authorization controls remain intact."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "cloudtrail_cfg_changes" {
@@ -148,7 +148,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudtrail_cfg_changes" {
   alarm_description         = "Monitoring changes to CloudTrail's configuration will help ensure sustained visibility to activities performed in the AWS account."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "console_signin_failures" {
@@ -175,7 +175,7 @@ resource "aws_cloudwatch_metric_alarm" "console_signin_failures" {
   alarm_description         = "Monitoring failed console logins may decrease lead time to detect an attempt to brute force a credential, which may provide an indicator, such as source IP, that can be used in other event correlation."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "disable_or_delete_cmk" {
@@ -202,7 +202,7 @@ resource "aws_cloudwatch_metric_alarm" "disable_or_delete_cmk" {
   alarm_description         = "Monitoring failed console logins may decrease lead time to detect an attempt to brute force a credential, which may provide an indicator, such as source IP, that can be used in other event correlation."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "s3_bucket_policy_changes" {
@@ -229,7 +229,7 @@ resource "aws_cloudwatch_metric_alarm" "s3_bucket_policy_changes" {
   alarm_description         = "Monitoring changes to S3 bucket policies may reduce time to detect and correct permissive policies on sensitive S3 buckets."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "aws_config_changes" {
@@ -256,7 +256,7 @@ resource "aws_cloudwatch_metric_alarm" "aws_config_changes" {
   alarm_description         = "Monitoring changes to AWS Config configuration will help ensure sustained visibility of configuration items within the AWS account."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "security_group_changes" {
@@ -283,7 +283,7 @@ resource "aws_cloudwatch_metric_alarm" "security_group_changes" {
   alarm_description         = "Monitoring changes to security group will help ensure that resources and services are not unintentionally exposed."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "nacl_changes" {
@@ -310,7 +310,7 @@ resource "aws_cloudwatch_metric_alarm" "nacl_changes" {
   alarm_description         = "Monitoring changes to NACLs will help ensure that AWS resources and services are not unintentionally exposed."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "network_gw_changes" {
@@ -337,7 +337,7 @@ resource "aws_cloudwatch_metric_alarm" "network_gw_changes" {
   alarm_description         = "Monitoring changes to network gateways will help ensure that all ingress/egress traffic traverses the VPC border via a controlled path."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "route_table_changes" {
@@ -364,7 +364,7 @@ resource "aws_cloudwatch_metric_alarm" "route_table_changes" {
   alarm_description         = "Monitoring changes to route tables will help ensure that all VPC traffic flows through an expected path."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "vpc_changes" {
@@ -391,5 +391,5 @@ resource "aws_cloudwatch_metric_alarm" "vpc_changes" {
   alarm_description         = "Monitoring changes to VPC will help ensure that all VPC traffic flows through an expected path."
   alarm_actions             = ["${aws_sns_topic.alarms.arn}"]
   insufficient_data_actions = []
-  treat_missing_data = "notBreaching"
+  treat_missing_data        = "notBreaching"
 }

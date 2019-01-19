@@ -74,5 +74,5 @@ variable "destination_replica_kms_key_id" {
 
 variable "destination_region" {
   description = "Destination region of the bucket data"
-  default = "us-east-2"
+  default     = "us-east-2"
 }

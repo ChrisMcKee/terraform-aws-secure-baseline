@@ -136,6 +136,7 @@ module "vpc_baseline_eu-north-1" {
     aws = "aws.eu-north-1"
   }
 }
+
 module "vpc_baseline_eu-west-1" {
   source                     = "./modules/vpc-baseline"
   vpc_flow_logs_group_arn    = "arn:aws:logs:eu-west-1:${var.aws_account_id}:log-group:${var.vpc_log_group_name}:*"

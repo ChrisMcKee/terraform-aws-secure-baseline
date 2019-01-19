@@ -90,91 +90,88 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| alarm_namespace | The namespace in which all alarms are set up. | string | `CISBenchmark` | no |
-| alarm_sns_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `CISAlarm` | no |
-| allow_users_to_change_password | Whether to allow users to change their own password. | string | `true` | no |
-| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | - | yes |
-| audit\_log\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | - | yes |
-| audit\_log\_destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | - | yes |
-| audit\_log\_enable\_expiration | Set to true to enable object expiration | string | `false` | no |
-| audit\_log\_expiration | Specifies a period in the object's expire (days) | string | `365` | no |
-| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier (access logs). | string | `90` | no |
-| audit\_log\_noncurrent\_version\_expiration | Specifies when noncurrent object versions expire (days) | string | `365` | no |
-| audit\_log\_noncurrent\_version\_transition | Specifies when noncurrent object versions transitions (days) | string | `90` | no |
-| audit\_log\_noncurrent\_version\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the noncurrent versions object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `GLACIER` | no |
-| audit\_log\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `/` | no |
-| audit\_log\_replication\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `/` | no |
-| audit\_log\_replication\_status | The status of the rule. Either Enabled or Disabled. The rule is ignored if status is not Enabled | string | `Disabled` | no |
-| audit\_log\_transition | Specifies a period in the object's transitions (days) | string | `90` | no |
-| audit\_log\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `GLACIER` | no |
-| aws_account_id | The AWS Account ID number of the account. | string | - | yes |
-| cloudtrail_cloudwatch_logs_group_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `cloudtrail-multi-region` | no |
-| cloudtrail_iam_role_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `CloudTrail-CloudWatch-Delivery-Role` | no |
-| cloudtrail_iam_role_policy_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `CloudTrail-CloudWatch-Delivery-Policy` | no |
-| cloudtrail_key_deletion_window_in_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `10` | no |
-| cloudtrail_name | The name of the trail. | string | `cloudtrail-multi-region` | no |
-| cloudtrail_s3_key_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `cloudtrail` | no |
-| cloudwatch_logs_retention_in_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `365` | no |
-| config_delivery_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `One_Hour` | no |
-| config_iam_role_name | The name of the IAM Role which AWS Config will use. | string | `Config-Recorder` | no |
-| config_iam_role_policy_name | The name of the IAM Role Policy which AWS Config will use. | string | `Config-Recorder-Policy` | no |
-| config_s3_bucket_key_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `config` | no |
-| config_sns_topic_name | The name of the SNS Topic to be used to notify configuration changes. | string | `ConfigChanges` | no |
-| manager_iam_role_name | The name of the IAM Manager role. | string | `IAM-Manager` | no |
-| manager_iam_role_policy_name | The name of the IAM Manager role policy. | string | `IAM-Manager-Policy` | no |
-| master_iam_role_name | The name of the IAM Master role. | string | `IAM-Master` | no |
-| master_iam_role_policy_name | The name of the IAM Master role policy. | string | `IAM-Master-Policy` | no |
-| max_password_age | The number of days that an user password is valid. | string | `90` | no |
-| minimum_password_length | Minimum length to require for user passwords. | string | `14` | no |
-| password_reuse_prevention | The number of previous passwords that users are prevented from reusing. | string | `24` | no |
-| region | The AWS region in which global resources are set up. | string | - | yes |
-| require_lowercase_characters | Whether to require lowercase characters for user passwords. | string | `true` | no |
-| require_numbers | Whether to require numbers for user passwords. | string | `true` | no |
-| require_symbols | Whether to require symbols for user passwords. | string | `true` | no |
-| require_uppercase_characters | Whether to require uppercase characters for user passwords. | string | `true` | no |
-| support_iam_role_name | The name of the the support role. | string | `IAM-Support` | no |
-| support_iam_role_policy_name | The name of the support role policy. | string | `IAM-Support-Role` | no |
-| support_iam_role_principal_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | - | yes |
-| vpc_iam_role_name | The name of the IAM Role which VPC Flow Logs will use. | string | `VPC-Flow-Logs-Publisher` | no |
-| vpc_iam_role_policy_name | The name of the IAM Role Policy which VPC Flow Logs will use. | string | `VPC-Flow-Logs-Publish-Policy` | no |
-| vpc_log_group_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | `default-vpc-flow-logs` | no |
-| vpc_log_retention_in_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `365` | no |
+| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | n/a | yes |
+| aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
+| region | The AWS region in which global resources are set up. | string | n/a | yes |
+| support\_iam\_role\_principal\_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | n/a | yes |
+| alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
+| alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
+| allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
+| audit\_log\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | `""` | no |
+| audit\_log\_destination\_region | Destination region of the bucket data | string | `"us-east-2"` | no |
+| audit\_log\_destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | `""` | no |
+| audit\_log\_enable\_expiration | Set to true to enable object expiration | string | `"false"` | no |
+| audit\_log\_expiration | Specifies a period in the object's expire (days) | string | `"365"` | no |
+| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier (access logs). | string | `"90"` | no |
+| audit\_log\_noncurrent\_version\_expiration | Specifies when noncurrent object versions expire (days) | string | `"365"` | no |
+| audit\_log\_noncurrent\_version\_transition | Specifies when noncurrent object versions transitions (days) | string | `"90"` | no |
+| audit\_log\_noncurrent\_version\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the noncurrent versions object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `"GLACIER"` | no |
+| audit\_log\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `"/"` | no |
+| audit\_log\_replication\_prefix | Object keyname prefix identifying one or more objects to which the rule applies | string | `"/"` | no |
+| audit\_log\_replication\_status | The status of the rule. Either Enabled or Disabled. The rule is ignored if status is not Enabled | string | `"Disabled"` | no |
+| audit\_log\_transition | Specifies a period in the object's transitions (days) | string | `"90"` | no |
+| audit\_log\_transition\_storage\_class | Specifies the Amazon S3 storage class to which you want the object to transition. Can be ONEZONE_IA, STANDARD_IA, INTELLIGENT_TIERING, or GLACIER | string | `"GLACIER"` | no |
+| cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
+| cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
+| cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
+| cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `"10"` | no |
+| cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
+| cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
+| config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `"One_Hour"` | no |
+| config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | string | `"Config-Recorder"` | no |
+| config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
+| config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
+| manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
+| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
+| master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
+| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
+| max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |
+| minimum\_password\_length | Minimum length to require for user passwords. | string | `"14"` | no |
+| password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | string | `"24"` | no |
+| require\_lowercase\_characters | Whether to require lowercase characters for user passwords. | string | `"true"` | no |
+| require\_numbers | Whether to require numbers for user passwords. | string | `"true"` | no |
+| require\_symbols | Whether to require symbols for user passwords. | string | `"true"` | no |
+| require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | string | `"true"` | no |
+| support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
+| support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
+| vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publisher"` | no |
+| vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publish-Policy"` | no |
+| vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | `"default-vpc-flow-logs"` | no |
+| vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| alarms_topic_arn | The ARN of the SNS topic to which CloudWatch Alarms will be sent. |
-| alarms_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. |
-| audit_bucket_arn | The ARN of the S3 bucket used for storing audit logs. |
-| audit_bucket_id | The ID of the S3 bucket used for storing audit logs. |
-| cloudtrail_arn | The ARN of the trail for recording events in all regions. |
-| cloudtrail_id | The ID of the trail for recording events in all regions. |
-| cloudtrail_kms_key_arn | The ARN of the KMS key used for encrypting CloudTrail events. |
-| cloudtrail_kms_key_id | The ID of the KMS key used for encrypting CloudTrail events. |
-| cloudtrail_log_delivery_iam_role_arn | The ARN of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| cloudtrail_log_delivery_iam_role_name | The name of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| cloudtrail_log_group_arn | The ARN of the CloudWatch Logs log group which stores CloudTrail events. |
-| cloudtrail_log_group_name | The name of the CloudWatch Logs log group which stores CloudTrail events. |
-| config_configuration_recorder_id | The name of the configuration recorder. |
-| config_iam_role_arn | The ARN of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| config_iam_role_name | The name of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| config_topic_arn | The ARN of the SNS topic that AWS Config delivers notifications to. |
-| default_network_acl_id | The ID of the default network ACL. |
-| default_route_table_id | The ID of the default route table. |
-| default_security_group_id | The ID of the default security group. |
-| default_vpc_id | The ID of the default VPC. |
-| guardduty_detector_id | The ID of the GuardDuty detector. |
-| manager_iam_role_arn | The ARN of the IAM role used for the manager user. |
-| manager_iam_role_name | The name of the IAM role used for the manager user. |
-| master_iam_role_arn | The ARN of the IAM role used for the master user. |
-| master_iam_role_name | The name of the IAM role used for the master user. |
-| support_iam_role_arn | The ARN of the IAM role used for the support user. |
-| support_iam_role_name | The name of the IAM role used for the support user. |
-| vpc_flow_logs_group_arn | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc_flow_logs_group_name | The name of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc_flow_logs_iam_role_arn | The ARN of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
-| vpc_flow_logs_iam_role_name | The name of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
+| alarms\_topic\_arn | The ARN of the SNS topic to which CloudWatch Alarms will be sent. |
+| alarms\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. |
+| audit\_bucket\_arn | The ARN of the S3 bucket used for storing audit logs. |
+| audit\_bucket\_id | The ID of the S3 bucket used for storing audit logs. |
+| cloudtrail\_arn | The ARN of the trail for recording events in all regions. |
+| cloudtrail\_id | The ID of the trail for recording events in all regions. |
+| cloudtrail\_kms\_key\_arn | The ARN of the KMS key used for encrypting CloudTrail events. |
+| cloudtrail\_kms\_key\_id | The ID of the KMS key used for encrypting CloudTrail events. |
+| cloudtrail\_log\_delivery\_iam\_role\_arn | The ARN of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
+| cloudtrail\_log\_delivery\_iam\_role\_name | The name of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
+| cloudtrail\_log\_group\_arn | The ARN of the CloudWatch Logs log group which stores CloudTrail events. |
+| cloudtrail\_log\_group\_name | The name of the CloudWatch Logs log group which stores CloudTrail events. |
+| config\_configuration\_recorder\_id | The name of the configuration recorder. |
+| config\_iam\_role\_arn | The ARN of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
+| config\_iam\_role\_name | The name of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
+| config\_topic\_arn | The ARN of the SNS topic that AWS Config delivers notifications to. |
+| default\_network\_acl\_id | The ID of the default network ACL. |
+| default\_route\_table\_id | The ID of the default route table. |
+| default\_security\_group\_id | The ID of the default security group. |
+| default\_vpc\_id | The ID of the default VPC. |
+| guardduty\_detector\_id | The ID of the GuardDuty detector. |
+| manager\_iam\_role\_arn | The ARN of the IAM role used for the manager user. |
+| manager\_iam\_role\_name | The name of the IAM role used for the manager user. |
+| master\_iam\_role\_arn | The ARN of the IAM role used for the master user. |
+| master\_iam\_role\_name | The name of the IAM role used for the master user. |
+| support\_iam\_role\_arn | The ARN of the IAM role used for the support user. |
+| support\_iam\_role\_name | The name of the IAM role used for the support user. |
+| vpc\_flow\_logs\_group\_arn | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
+| vpc\_flow\_logs\_group\_name | The name of the CloudWatch Logs log group which stores VPC Flow Logs. |
+| vpc\_flow\_logs\_iam\_role\_arn | The ARN of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
+| vpc\_flow\_logs\_iam\_role\_name | The name of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 
-[CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
-[Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
