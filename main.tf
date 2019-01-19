@@ -47,7 +47,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:PutObject",
-      "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.config_s3_bucket_key_prefix}/AWSLogs/${var.aws_account_id}/Config/*",
+      "Resource": "${module.audit_log_bucket.this_bucket_arn}/AWSLogs/${var.aws_account_id}/Config/*",
       "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
     },
     {
@@ -66,7 +66,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.cloudtrail_s3_key_prefix}/AWSLogs/${var.aws_account_id}/*",
+        "Resource": "${module.audit_log_bucket.this_bucket_arn}/AWSLogs/${var.aws_account_id}/*",
         "Condition": {
             "StringEquals": {
                 "s3:x-amz-acl": "bucket-owner-full-control"
@@ -119,7 +119,6 @@ module "cloudtrail_baseline" {
   key_deletion_window_in_days       = "${var.cloudtrail_key_deletion_window_in_days}"
   region                            = "${var.region}"
   s3_bucket_name                    = "${module.audit_log_bucket.this_bucket_id}"
-  s3_key_prefix                     = "${var.cloudtrail_s3_key_prefix}"
 }
 
 # --------------------------------------------------------------------------------------------------

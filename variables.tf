@@ -204,11 +204,6 @@ variable "config_iam_role_policy_name" {
   default     = "Config-Recorder-Policy"
 }
 
-variable "config_s3_bucket_key_prefix" {
-  description = "The prefix used when writing AWS Config snapshots into the S3 bucket."
-  default     = "config"
-}
-
 variable "config_sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   default     = "ConfigChanges"
@@ -246,11 +241,6 @@ variable "cloudtrail_key_deletion_window_in_days" {
 variable "cloudtrail_name" {
   description = "The name of the trail."
   default     = "cloudtrail-multi-region"
-}
-
-variable "cloudtrail_s3_key_prefix" {
-  description = "The prefix used when CloudTrail delivers events to the S3 bucket."
-  default     = "cloudtrail"
 }
 
 # --------------------------------------------------------------------------------------------------
