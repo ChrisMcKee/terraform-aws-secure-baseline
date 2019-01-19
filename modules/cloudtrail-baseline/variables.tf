@@ -39,8 +39,3 @@ variable "region" {
 variable "s3_bucket_name" {
   description = "The name of the S3 bucket which will store configuration snapshots."
 }
-
-variable "s3_key_prefix" {
-  description = "The prefix for the specified S3 bucket."
-  default     = ""
-}
