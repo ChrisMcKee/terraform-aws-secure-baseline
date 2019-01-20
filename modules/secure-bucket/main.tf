@@ -85,7 +85,7 @@ resource "aws_s3_bucket" "content" {
       }
 
       destination {
-        bucket             = "${var.destination_bucket_arn}"
+        bucket             = "${var.config_destination_bucket_arn}"
         replica_kms_key_id = "${var.destination_replica_kms_key_id}"
       }
     }
@@ -103,7 +103,7 @@ resource "aws_s3_bucket" "content" {
       }
 
       destination {
-        bucket             = "${var.destination_bucket_arn}"
+        bucket             = "${var.cloudtrail_destination_bucket_arn}"
         replica_kms_key_id = "${var.destination_replica_kms_key_id}"
       }
     }
@@ -121,7 +121,7 @@ resource "aws_s3_bucket" "content" {
       }
 
       destination {
-        bucket             = "${var.destination_bucket_arn}"
+        bucket             = "${var.cloudtrail_destination_bucket_arn}"
         replica_kms_key_id = "${var.destination_replica_kms_key_id}"
       }
     }

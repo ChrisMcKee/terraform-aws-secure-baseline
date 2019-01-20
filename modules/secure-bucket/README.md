@@ -8,7 +8,8 @@ Creates a S3 bucket with access logging enabled.
 |------|-------------|:----:|:-----:|:-----:|
 | aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
 | bucket\_name |  | string | n/a | yes |
-| destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule | string | n/a | yes |
+| cloudtrail\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the cloudtrail object identified by the rule | string | n/a | yes |
+| config\_destination\_bucket\_arn | The ARN of the S3 bucket where you want Amazon S3 to store replicas of the config object identified by the rule | string | n/a | yes |
 | destination\_replica\_kms\_key\_id | Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with sse_kms_encrypted_objects source selection criteria | string | n/a | yes |
 | log\_bucket\_name |  | string | n/a | yes |
 | region | Region of the bucket data | string | n/a | yes |

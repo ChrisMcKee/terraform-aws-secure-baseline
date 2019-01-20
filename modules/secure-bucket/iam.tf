@@ -53,7 +53,10 @@ resource "aws_iam_policy" "replication" {
                 "s3:GetObjectVersionTagging"
             ],
             "Effect": "Allow",
-            "Resource": "${var.destination_bucket_arn}/*"
+            "Resource": [
+                "${var.config_destination_bucket_arn}/*",
+                "${var.cloudtrail_destination_bucket_arn}/*"
+            ]
         },
         {
             "Action": [
@@ -81,7 +84,8 @@ resource "aws_iam_policy" "replication" {
                 "StringLike": {
                     "kms:ViaService": "s3.${var.destination_region}.amazonaws.com",
                     "kms:EncryptionContext:aws:s3:arn": [
-                        "${var.destination_bucket_arn}/*"
+                        "${var.config_destination_bucket_arn}/*",
+                        "${var.cloudtrail_destination_bucket_arn}/*"
                     ]
                 }
             },

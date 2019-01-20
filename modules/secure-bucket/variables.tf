@@ -60,8 +60,12 @@ variable "replication_prefix" {
   default     = "/"
 }
 
-variable "destination_bucket_arn" {
-  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule"
+variable "config_destination_bucket_arn" {
+  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the config object identified by the rule"
+}
+
+variable "cloudtrail_destination_bucket_arn" {
+  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the cloudtrail object identified by the rule"
 }
 
 variable "source_kms_key_id" {

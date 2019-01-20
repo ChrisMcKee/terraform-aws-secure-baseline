@@ -114,7 +114,8 @@ module "audit_log_bucket" {
   replication_status                          = "${var.audit_log_replication_status}"
   replication_prefix                          = "${var.audit_log_replication_prefix}"
   source_kms_key_id                           = "${module.cloudtrail_baseline.kms_key_arn}"
-  destination_bucket_arn                      = "${var.audit_log_destination_bucket_arn}"
+  config_destination_bucket_arn               = "${var.audit_log_config_destination_bucket_arn}"
+  cloudtrail_destination_bucket_arn           = "${var.audit_log_cloudtrail_destination_bucket_arn}"
   destination_replica_kms_key_id              = "${var.audit_log_destination_replica_kms_key_id}"
   aws_account_id                              = "${var.aws_account_id}"
 }

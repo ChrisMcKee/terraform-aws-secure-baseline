@@ -65,8 +65,13 @@ variable "audit_log_replication_prefix" {
   default     = "/"
 }
 
-variable "audit_log_destination_bucket_arn" {
-  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule"
+variable "audit_log_config_destination_bucket_arn" {
+  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the config object identified by the rule"
+  default     = ""
+}
+
+variable "audit_log_cloudtrail_destination_bucket_arn" {
+  description = "The ARN of the S3 bucket where you want Amazon S3 to store replicas of the cloudtrail object identified by the rule"
   default     = ""
 }
 
