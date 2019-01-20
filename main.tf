@@ -116,6 +116,7 @@ module "audit_log_bucket" {
   source_kms_key_id                           = "${module.cloudtrail_baseline.kms_key_arn}"
   destination_bucket_arn                      = "${var.audit_log_destination_bucket_arn}"
   destination_replica_kms_key_id              = "${var.audit_log_destination_replica_kms_key_id}"
+  aws_account_id                              = "${var.aws_account_id}"
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {

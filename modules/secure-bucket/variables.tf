@@ -76,3 +76,7 @@ variable "destination_region" {
   description = "Destination region of the bucket data"
   default     = "us-east-2"
 }
+
+variable "aws_account_id" {
+  description = "The AWS Account ID number of the account."
+}

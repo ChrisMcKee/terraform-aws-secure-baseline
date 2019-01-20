@@ -73,9 +73,45 @@ resource "aws_s3_bucket" "content" {
     role = "${aws_iam_role.replication.arn}"
 
     rules {
-      id = "replication"
+      id = "config-replication"
 
-      # prefix = "${var.replication_prefix}"
+      prefix = "AWSLogs/${var.aws_account_id}/Config/"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
+    }
+
+    rules {
+      id = "cloudtrail-replication"
+
+      prefix = "AWSLogs/${var.aws_account_id}/CloudTrail/"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
+    }
+
+    rules {
+      id = "cloudtrail-digest-replication"
+
+      prefix = "AWSLogs/${var.aws_account_id}/CloudTrail-Digest/"
       status = "${var.replication_status}"
 
       source_selection_criteria {
