@@ -1,3 +1,9 @@
+/**
+* # cloudtrail-baseline
+*
+* Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTrail logs are encrypted using AWS Key Management Service.
+*/
+
 # --------------------------------------------------------------------------------------------------
 # CloudWatch Logs group to accept CloudTrail event stream.
 # --------------------------------------------------------------------------------------------------
@@ -166,5 +172,4 @@ resource "aws_cloudtrail" "global" {
   is_multi_region_trail         = true
   kms_key_id                    = "${aws_kms_key.cloudtrail.arn}"
   s3_bucket_name                = "${var.s3_bucket_name}"
-  s3_key_prefix                 = "${var.s3_key_prefix}"
 }

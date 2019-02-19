@@ -1,3 +1,9 @@
+/** 
+ * # secure-bucket
+ *
+ * Creates a S3 bucket with access logging enabled.
+ */
+
 resource "aws_s3_bucket" "access_log" {
   bucket = "${var.log_bucket_name}"
 
@@ -7,7 +13,7 @@ resource "aws_s3_bucket" "access_log" {
     id      = "auto-archive"
     enabled = true
 
-    prefix = "/"
+    # prefix = "/"
 
     transition {
       days          = "${var.lifecycle_glacier_transition_days}"
@@ -37,16 +43,87 @@ resource "aws_s3_bucket" "content" {
     id      = "auto-archive"
     enabled = true
 
-    prefix = "/"
+    # prefix = "${var.prefix}"
 
     transition {
-      days          = "${var.lifecycle_glacier_transition_days}"
-      storage_class = "GLACIER"
+      days          = "${var.transition}"
+      storage_class = "${var.transition_storage_class}"
+    }
+    noncurrent_version_transition {
+      days          = "${var.noncurrent_version_transition}"
+      storage_class = "${var.noncurrent_version_transition_storage_class}"
+    }
+  }
+
+  lifecycle_rule {
+    id      = "auto-expire"
+    enabled = "${var.enable_expiration}"
+
+    # prefix = "${var.prefix}"
+
+    expiration {
+      days = "${var.expiration}"
+    }
+    noncurrent_version_expiration {
+      days = "${var.noncurrent_version_expiration}"
+    }
+  }
+
+  replication_configuration {
+    role = "${aws_iam_role.replication.arn}"
+
+    rules {
+      id = "config-replication"
+
+      prefix = "AWSLogs/${var.aws_account_id}/Config/"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.config_destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
     }
 
-    noncurrent_version_transition {
-      days          = "${var.lifecycle_glacier_transition_days}"
-      storage_class = "GLACIER"
+    rules {
+      id = "cloudtrail-replication"
+
+      prefix = "AWSLogs/${var.aws_account_id}/CloudTrail/"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.cloudtrail_destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
+    }
+
+    rules {
+      id = "cloudtrail-digest-replication"
+
+      prefix = "AWSLogs/${var.aws_account_id}/CloudTrail-Digest/"
+      status = "${var.replication_status}"
+
+      source_selection_criteria {
+        sse_kms_encrypted_objects {
+          enabled = true
+        }
+      }
+
+      destination {
+        bucket             = "${var.cloudtrail_destination_bucket_arn}"
+        replica_kms_key_id = "${var.destination_replica_kms_key_id}"
+      }
     }
   }
 }

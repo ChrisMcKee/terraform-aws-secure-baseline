@@ -1,3 +1,9 @@
+/**
+* # config-baseline
+*
+* Enable AWS Config in all regions to automatically take configuration snapshots.
+*/
+
 # --------------------------------------------------------------------------------------------------
 # Set up AWS Config recorder and let it publish results and send notifications.
 # --------------------------------------------------------------------------------------------------
@@ -21,7 +27,6 @@ resource "aws_config_delivery_channel" "bucket" {
   name = "${var.delivery_channel_name}"
 
   s3_bucket_name = "${var.s3_bucket_name}"
-  s3_key_prefix  = "${var.s3_key_prefix}"
   sns_topic_arn  = "${aws_sns_topic.config.arn}"
 
   snapshot_delivery_properties = {

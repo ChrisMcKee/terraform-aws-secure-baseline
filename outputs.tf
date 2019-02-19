@@ -21,6 +21,11 @@ output "alarms_topic_arn" {
   value       = "${module.alarm_baseline.alarm_topic_arn}"
 }
 
+output "alarms_topic_name" {
+  description = "The name of the SNS Topic which will be notified when any alarm is performed."
+  value       = "${module.alarm_baseline.alarm_topic_name}"
+}
+
 # --------------------------------------------------------------------------------------------------
 # Outputs from cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -91,6 +96,7 @@ output "config_configuration_recorder_id" {
       "ap-southeast-2", "${module.config_baseline_ap-southeast-2.configuration_recorder_id}",
       "ca-central-1", "${module.config_baseline_ca-central-1.configuration_recorder_id}",
       "eu-central-1", "${module.config_baseline_eu-central-1.configuration_recorder_id}",
+      "eu-north-1", "${module.config_baseline_eu-north-1.configuration_recorder_id}",
       "eu-west-1", "${module.config_baseline_eu-west-1.configuration_recorder_id}",
       "eu-west-2", "${module.config_baseline_eu-west-2.configuration_recorder_id}",
       "eu-west-3", "${module.config_baseline_eu-west-3.configuration_recorder_id}",
@@ -115,6 +121,7 @@ output "config_topic_arn" {
       "ap-southeast-2", "${module.config_baseline_ap-southeast-2.config_topic_arn}",
       "ca-central-1", "${module.config_baseline_ca-central-1.config_topic_arn}",
       "eu-central-1", "${module.config_baseline_eu-central-1.config_topic_arn}",
+      "eu-north-1", "${module.config_baseline_eu-north-1.config_topic_arn}",
       "eu-west-1", "${module.config_baseline_eu-west-1.config_topic_arn}",
       "eu-west-2", "${module.config_baseline_eu-west-2.config_topic_arn}",
       "eu-west-3", "${module.config_baseline_eu-west-3.config_topic_arn}",
@@ -262,6 +269,7 @@ output "default_vpc_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_vpc_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_vpc_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_vpc_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_vpc_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_vpc_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_vpc_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_vpc_id}",
@@ -286,6 +294,7 @@ output "default_security_group_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_security_group_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_security_group_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_security_group_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_security_group_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_security_group_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_security_group_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_security_group_id}",
@@ -310,6 +319,7 @@ output "default_network_acl_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_network_acl_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_network_acl_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_network_acl_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_network_acl_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_network_acl_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_network_acl_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_network_acl_id}",
@@ -334,6 +344,7 @@ output "default_route_table_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_route_table_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_route_table_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_route_table_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_route_table_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_route_table_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_route_table_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_route_table_id}",
